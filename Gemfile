@@ -67,6 +67,5 @@ gem "pagy", "~> 3.10"
 
 # Project Gems
 
-
 # Security patches
 gem "nokogiri", ">= 1.11.0.rc4"
