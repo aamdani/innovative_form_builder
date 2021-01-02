@@ -1,6 +1,4 @@
-![Tests](https://github.com/aamdani/innovative_form_builder/workflows/Tests/badge.svg)
-
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
+![Tests](https://github.com/aamdani/innovative_form_builder/workflows/Tests/badge.svg) [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
 # README
 
