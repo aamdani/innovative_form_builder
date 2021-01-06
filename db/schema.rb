@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_232921) do
+ActiveRecord::Schema.define(version: 2021_01_06_030844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "custom_forms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_custom_forms_on_user_id"
+  end
+
+  create_table "form_elements", force: :cascade do |t|
+    t.string "label"
+    t.string "input_type"
+    t.string "position"
+    t.bigint "custom_form_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_form_id"], name: "index_form_elements_on_custom_form_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "custom_form_id", null: false
+    t.jsonb "responses"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_form_id"], name: "index_submissions_on_custom_form_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,4 +63,8 @@ ActiveRecord::Schema.define(version: 2021_01_01_232921) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "custom_forms", "users"
+  add_foreign_key "form_elements", "custom_forms"
+  add_foreign_key "submissions", "custom_forms"
+  add_foreign_key "submissions", "users"
 end

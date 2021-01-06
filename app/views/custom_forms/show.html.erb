@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @custom_form.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @custom_form.user_id %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @custom_form.published_at %>
+</p>
+
+<%= link_to 'Edit', edit_custom_form_path(@custom_form) %> |
+<%= link_to 'Back', custom_forms_path %>

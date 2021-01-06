@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Form Elements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Input type</th>
+      <th>Position</th>
+      <th>Custom form</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @form_elements.each do |form_element| %>
+      <tr>
+        <td><%= form_element.label %></td>
+        <td><%= form_element.input_type %></td>
+        <td><%= form_element.position %></td>
+        <td><%= form_element.custom_form_id %></td>
+        <td><%= link_to 'Show', form_element %></td>
+        <td><%= link_to 'Edit', edit_form_element_path(form_element) %></td>
+        <td><%= link_to 'Destroy', form_element, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form Element', new_form_element_path %>

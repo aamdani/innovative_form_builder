@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @submission.user_id %>
+</p>
+
+<p>
+  <strong>Custom form:</strong>
+  <%= @submission.custom_form_id %>
+</p>
+
+<p>
+  <strong>Responses:</strong>
+  <%= @submission.responses %>
+</p>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

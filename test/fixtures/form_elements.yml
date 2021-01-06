@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  input_type: MyString
+  position: MyString
+  custom_form: one
+
+two:
+  label: MyString
+  input_type: MyString
+  position: MyString
+  custom_form: two
