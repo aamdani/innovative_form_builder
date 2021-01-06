@@ -2,6 +2,7 @@
   "name": "innovative-form-builder",
   "private": true,
   "dependencies": {
+    "@hotwired/turbo-rails": "^7.0.0-beta.3",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -9,8 +10,7 @@
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
-    "tailwindcss": "yarn:@tailwindcss/postcss7-compat",
-    "turbolinks": "^5.2.0"
+    "tailwindcss": "yarn:@tailwindcss/postcss7-compat"
   },
   "version": "0.1.0",
   "devDependencies": {

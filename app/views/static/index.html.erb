@@ -1,5 +1,5 @@
 <!-- Hero Section -->
-<div class="relative bg-builder-800 overflow-hidden">
+<div id="hero" class="relative bg-builder-800 overflow-hidden">
   <div class="hidden sm:block sm:absolute sm:inset-0" aria-hidden="true">
     <svg class="absolute bottom-0 right-0 transform translate-x-1/2 mb-48 text-builder-700 lg:top-0 lg:mt-28 lg:mb-0 xl:transform-none xl:translate-x-0" width="364" height="384" viewBox="0 0 364 384" fill="none">
       <defs>
@@ -29,17 +29,22 @@
           </div>
         </div>
         <div class="hidden space-x-10 md:flex md:ml-10">
-          <a href="#" class="font-medium text-white hover:text-builder-300">Home</a>
+          <a href="#home" class="font-medium text-white hover:text-builder-300">Home</a>
 
-          <a href="#" class="font-medium text-white hover:text-builder-300">Features</a>
+          <a href="#features" class="font-medium text-white hover:text-builder-300">Features</a>
 
-          <a href="#" class="font-medium text-white hover:text-builder-300">Pricing</a>
+          <a href="#pricing" class="font-medium text-white hover:text-builder-300">Pricing</a>
 
-          <a href="#" class="font-medium text-white hover:text-builder-300">Company</a>
+          <a href="#company" class="font-medium text-white hover:text-builder-300">Company</a>
         </div>
       </div>
       <div class="hidden md:flex">
-        <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-600 hover:bg-builder-700"> Log in </a>
+      <% if !user_signed_in? %>
+        <%= link_to 'Log In', new_user_session_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-600 hover:bg-builder-700" %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-800 hover:bg-builder-900" %>
+      <% else %>
+        <p class="text-builder-300">Welcome, <%= current_user.name %>!</p>
+      <% end %>
       </div>
     </nav>
 
@@ -80,7 +85,12 @@
             <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-builder-700 hover:text-builder-900 hover:bg-builder-50" role="menuitem">Company</a>
           </div>
           <div role="none">
-            <a href="#" class="block w-full px-5 py-3 text-center font-medium text-builder-600 bg-builder-50 hover:bg-builder-100" role="menuitem"> Log in </a>
+          <% if !user_signed_in? %>
+            <%= link_to 'Log In', new_user_session_path, class: "block w-full px-5 py-3 text-center font-medium text-builder-600 bg-builder-50 hover:bg-builder-100", role: "menuitem" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'block w-full px-5 py-3 text-center font-medium text-builder-800 bg-builder-200 hover:bg-builder-300' %>
+          <% else %>
+            <p class="text-builder-300">Welcome, <%= current_user.name %>!</p>
+          <% end %>
           </div>
         </div>
       </div>
@@ -283,7 +293,7 @@
 </div>
 
 <!-- Features -->
-<div class="py-16 bg-builder-200 overflow-hidden lg:py-24">
+<div id="features" class="py-16 bg-builder-200 overflow-hidden lg:py-24">
   <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
     <svg class="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4" width="404" height="784" fill="none" viewBox="0 0 404 784" aria-hidden="true">
       <defs>
@@ -452,7 +462,7 @@
 
 
 <!-- Pricing -->
-<div class="bg-white">
+<div id="pricing" class="bg-white">
   <div class="max-w-7xl mx-auto bg-white py-16 sm:py-24 sm:px-6 lg:px-8">
     <!-- xs to lg -->
     <div class="max-w-2xl mx-auto lg:hidden">
@@ -1438,8 +1448,8 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<div class="bg-builder-700">
+<!-- Company/FAQ -->
+<div id="company" class="bg-builder-700">
   <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-extrabold text-white">Frequently asked questions</h2>
     <div class="mt-6 border-t border-builder-300 border-opacity-25 pt-10">
