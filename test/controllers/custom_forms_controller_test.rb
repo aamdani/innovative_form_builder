@@ -3,6 +3,7 @@ require "test_helper"
 class CustomFormsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @custom_form = custom_forms(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do

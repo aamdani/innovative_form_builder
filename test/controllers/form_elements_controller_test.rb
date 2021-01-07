@@ -3,6 +3,7 @@ require "test_helper"
 class FormElementsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @form_element = form_elements(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do

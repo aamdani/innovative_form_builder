@@ -3,6 +3,7 @@ require "test_helper"
 class SubmissionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @submission = submissions(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
