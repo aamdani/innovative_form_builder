@@ -1,3 +1,8 @@
+<% if user_signed_in? %>
+<% home_target = custom_forms_path %>
+<% else %>
+<% home_target = "#home" %>
+<% end %>
 <!-- Hero Section -->
 <div id="hero" class="relative bg-builder-800 overflow-hidden">
   <div class="hidden sm:block sm:absolute sm:inset-0" aria-hidden="true">
@@ -29,7 +34,7 @@
           </div>
         </div>
         <div class="hidden space-x-10 md:flex md:ml-10">
-          <a href="#home" class="font-medium text-white hover:text-builder-300">Home</a>
+          <a href="<%= home_target %>" class="font-medium text-white hover:text-builder-300">Dashboard</a>
 
           <a href="#features" class="font-medium text-white hover:text-builder-300">Features</a>
 
@@ -43,7 +48,8 @@
         <%= link_to 'Log In', new_user_session_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-600 hover:bg-builder-700" %>
         <%= link_to 'Sign Up', new_user_registration_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-800 hover:bg-builder-900" %>
       <% else %>
-        <p class="text-builder-300">Welcome, <%= current_user.name %>!</p>
+        <p class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-600 hover:bg-builder-700">Welcome, <%= current_user.email %>!</p>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-builder-800 hover:bg-builder-900" %>
       <% end %>
       </div>
     </nav>
@@ -89,7 +95,8 @@
             <%= link_to 'Log In', new_user_session_path, class: "block w-full px-5 py-3 text-center font-medium text-builder-600 bg-builder-50 hover:bg-builder-100", role: "menuitem" %>
             <%= link_to 'Sign Up', new_user_registration_path, class: 'block w-full px-5 py-3 text-center font-medium text-builder-800 bg-builder-200 hover:bg-builder-300' %>
           <% else %>
-            <p class="text-builder-300">Welcome, <%= current_user.name %>!</p>
+            <p class="block w-full px-5 py-3 text-center font-medium text-builder-600 bg-builder-50 hover:bg-builder-100" role="menuitem">Welcome, <%= current_user.email %>!</p>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'block w-full px-5 py-3 text-center font-medium text-builder-800 bg-builder-200 hover:bg-builder-300' %>
           <% end %>
           </div>
         </div>
@@ -158,26 +165,38 @@
                 </div>
 
                 <div class="mt-6">
-                  <form action="#" method="POST" class="space-y-6">
-                    <div>
-                      <label for="name" class="sr-only">Full name</label>
-                      <input type="text" name="name" id="name" autocomplete="name" placeholder="Full name" required class="block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" />
+                  <%= form_for(:user, url: registration_path(User.new), class: "space-y-6") do |f| %>
+                    <div class="m-1">
+                      <%= f.label :email, class: "sr-only" %>
+                      <%= f.email_field :email,
+                              autocomplete: "email",
+                              placeholder: "E-mail address (user@example.com)",
+                              class: "block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" %>
                     </div>
 
-                    <div>
-                      <label for="email" class="sr-only">Email</label>
-                      <input type="text" name="email" id="email" autocomplete="email" placeholder="Email address" required class="block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" />
+                    <div class="m-1">
+                      <%= f.label :password, class: "sr-only" %>
+                      <% if @minimum_password_length %>
+                        <small><em class="text-gray-600">(<%= @minimum_password_length %> charactersa minimum)</em></small>
+                      <% end %>
+                      <%= f.password_field :password,
+                                placeholder: "Password",
+                                autocomplete: "current-password",
+                                class: "block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" %>
                     </div>
 
-                    <div>
-                      <label for="password" class="sr-only">Password</label>
-                      <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required class="block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" />
+                    <div class="m-1">
+                      <%= f.label :password_confirmation, class: "sr-only" %>
+                      <%= f.password_field :password_confirmation,
+                                placeholder: "Confirm password",
+                                autocomplete: "new-password",
+                                class: "block w-full shadow-sm focus:ring-builder-500 focus:border-builder-500 sm:text-sm border-builder-300 rounded-md" %>
                     </div>
 
                     <div>
                       <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-builder-600 hover:bg-builder-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-builder-500">Create your account</button>
                     </div>
-                  </form>
+                  <% end %>
                 </div>
               </div>
               <div class="px-4 py-6 bg-builder-50 border-t-2 border-builder-200 sm:px-10">

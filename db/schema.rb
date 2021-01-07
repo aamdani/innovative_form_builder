@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_030844) do
+ActiveRecord::Schema.define(version: 2021_01_07_020710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,13 @@ ActiveRecord::Schema.define(version: 2021_01_06_030844) do
   create_table "form_elements", force: :cascade do |t|
     t.string "label"
     t.string "input_type"
-    t.string "position"
+    t.integer "position"
     t.bigint "custom_form_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "tag"
+    t.text "values"
+    t.boolean "required"
     t.index ["custom_form_id"], name: "index_form_elements_on_custom_form_id"
   end
 

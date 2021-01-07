@@ -6,13 +6,13 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @custom_form.user_id %>
+  <strong>Owned by:</strong>
+  <%= @custom_form.user.email %>
 </p>
 
 <p>
-  <strong>Published at:</strong>
-  <%= @custom_form.published_at %>
+  <strong>Published:</strong>
+  <%= @custom_form.published_at ? @custom_form.published_at.strftime("%b %d, %Y") : "--" %>
 </p>
 
 <%= link_to 'Edit', edit_custom_form_path(@custom_form) %> |

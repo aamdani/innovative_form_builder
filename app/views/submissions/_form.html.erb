@@ -12,21 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :custom_form_id %>
-    <%= form.text_field :custom_form_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :responses %>
     <%= form.text_field :responses %>
   </div>
 
   <div class="actions">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :custom_form_id, value: @custom_form_id %>
     <%= form.submit %>
   </div>
 <% end %>

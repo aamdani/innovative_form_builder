@@ -1,7 +1,7 @@
-<%= form_with(model: custom_form) do |form| %>
+<%= form_with(model: custom_form) do |f| %>
   <% if custom_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(custom_form.errors.count, "error") %> prohibited this custom_form from being saved:</h2>
+      <h2><%= pluralize(custom_form.errors.count, "error") %> prohibited this Custom Form from being saved:</h2>
 
       <ul>
         <% custom_form.errors.each do |error| %>
@@ -11,22 +11,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field mb-1">
+    <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= f.text_field :name, placeholder:"Enter your form's name", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="field mb-1">
+    <h1 class="text-2xl">Form Elements</h1>
   </div>
+  
+  <% f.fields_for :form_elements do |ff| %>
+    <%= render :partial => 'form_element', :locals => { :f => ff } %>
+  <% end %>
+  
+  <%= add_child_link "Add an Element", f, :form_elements %>
 
-  <div class="field">
-    <%= form.label :published_at %>
-    <%= form.datetime_select :published_at %>
-  </div>
+  <br />
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.button class: "inline-flex px-4 py-2 text-sm font-medium rounded-md shadow-sm text-white bg-builder-600 hover:bg-builder-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-builder-500" %>
   </div>
 <% end %>

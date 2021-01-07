@@ -6,8 +6,8 @@
 import Rails from "@rails/ujs";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
+import "alpinejs";
 import "stylesheets/application.scss";
 
 Rails.start();
-Turbo.start();
 ActiveStorage.start();

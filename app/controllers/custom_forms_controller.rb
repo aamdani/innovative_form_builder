@@ -1,4 +1,5 @@
 class CustomFormsController < ApplicationController
+  before_action :set_heading
   before_action :set_custom_form, only: [:show, :edit, :update, :destroy]
 
   # GET /custom_forms
@@ -25,6 +26,8 @@ class CustomFormsController < ApplicationController
   # POST /custom_forms.json
   def create
     @custom_form = CustomForm.new(custom_form_params)
+    @custom_form.user = current_user
+    @custom_form.published_at = Time.zone.now
 
     respond_to do |format|
       if @custom_form.save
@@ -71,5 +74,9 @@ class CustomFormsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def custom_form_params
     params.require(:custom_form).permit(:name, :user_id, :published_at)
+  end
+
+  def set_heading
+    @heading = "Custom Forms"
   end
 end

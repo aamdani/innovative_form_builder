@@ -1,6 +1,7 @@
 class FormElementsController < ApplicationController
   before_action :set_form_element, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_heading
+  
   # GET /form_elements
   # GET /form_elements.json
   def index
@@ -71,5 +72,9 @@ class FormElementsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def form_element_params
     params.require(:form_element).permit(:label, :input_type, :position, :custom_form_id)
+  end
+
+  def set_heading
+    @heading = "Form Elements"
   end
 end

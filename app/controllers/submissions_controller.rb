@@ -1,6 +1,7 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_heading
+  
   # GET /submissions
   # GET /submissions.json
   def index
@@ -15,10 +16,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   def new
     @submission = Submission.new
+    @custom_form_id = params[:custom_form_id]
   end
 
   # GET /submissions/1/edit
   def edit
+    @custom_form_id = @submission.custom_form.id
   end
 
   # POST /submissions
@@ -71,5 +74,9 @@ class SubmissionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def submission_params
     params.require(:submission).permit(:user_id, :custom_form_id, :responses)
+  end
+
+  def set_heading
+    @heading = "User Submissions"
   end
 end
