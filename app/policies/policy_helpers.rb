@@ -1,5 +1,5 @@
 module PolicyHelpers
   def admin?
-    user && user.admin?
+    user?.admin?
   end
 end

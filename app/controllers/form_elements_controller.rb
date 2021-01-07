@@ -1,7 +1,7 @@
 class FormElementsController < ApplicationController
   before_action :set_form_element, only: [:show, :edit, :update, :destroy]
   before_action :set_heading
-  
+
   # GET /form_elements
   # GET /form_elements.json
   def index

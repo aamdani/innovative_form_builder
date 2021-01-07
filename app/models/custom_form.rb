@@ -3,5 +3,5 @@ class CustomForm < ApplicationRecord
   has_many :form_elements, dependent: :destroy
   has_many :submissions, dependent: :destroy
 
-  accepts_nested_attributes_for :form_elements, :allow_destroy => true
+  accepts_nested_attributes_for :form_elements, allow_destroy: true
 end
