@@ -62,7 +62,7 @@ gem "devise", "~> 4.7"
 gem "money"
 gem "name_of_person"
 gem "pundit", "~> 2.1"
-gem "sidekiq", "~> 6.1"
+gem "sidekiq", "~> 6.2"
 gem "view_component", "~> 2.24"
 gem "pagy", "~> 3.10"
 
